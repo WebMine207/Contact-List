@@ -1,0 +1,551 @@
+@use "../themes/index" as *;
+
+.sidebar {
+  background-image: linear-gradient($primaryColor, $secondaryColor);
+  color: $blackColor;
+  text-align: center;
+  width: 60px;
+  height: 880px;
+  margin-right: 10px;
+  padding: 15px 0;
+  .logo {
+    margin-bottom: 30px;
+    color: $whiteColor;
+  }
+
+  a {
+    display: flex;
+    text-decoration: none;
+    .sidebar-icon {
+      margin: 12px 10px;
+      color: $whiteColor;
+    }
+  }
+  .active {
+    background-color: $whiteColor;
+    width: 5px;
+    margin-top: 5px;
+    height: 45px;
+  }
+}
+.page {
+  width: 100%;
+  hr {
+    margin-top: 50px;
+  }
+  .heading {
+    hr {
+      width: 100%;
+    }
+    .heading-one {
+      font-family: poppins;
+      font-size: 20px;
+      font-weight: bold;
+      margin-right: 230px;
+    }
+
+    .heading-logo {
+      display: flex;
+      margin: 15px;
+      .logo {
+        margin: 8px;
+      }
+      span {
+        color: $descriptiveLight;
+      }
+    }
+  }
+  .content {
+    margin: 20px 80px;
+    .search-bar {
+      input {
+        width: 240px;
+        height: 30px;
+        border: 1px solid $blackColor;
+        border-radius: 20px;
+        padding-left: 10px;
+        position: relative;
+        background-color: $fontLightColor;
+      }
+      img {
+        transform: translate(-30px, -3px);
+      }
+    }
+    .contacts {
+      margin: 25px 0;
+      display: flex;
+      .list {
+        color: $blackColor;
+        width: 700px;
+        height: 585px;
+        overflow: auto;
+        input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+        }
+        .not-found {
+          font-size: 20px;
+          text-align: center;
+          color: #f36fa3;
+          padding-top: 50px;
+        }
+        table {
+          thead {
+            height: 50px;
+            font-size: 20px;
+            background-color: $bgGrayColor;
+            color: $descriptiveLight;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            .selection {
+              text-align: center;
+              width: 40px;
+            }
+            .info {
+              padding: 0 20px;
+              width: 380px;
+            }
+            .company {
+              padding: 0 20px;
+              width: 300px;
+            }
+            .sticky {
+              position: fixed;
+              top: 0;
+            }
+          }
+          tbody {
+            background-color: $whiteColor;
+            .round-image {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+            #profileImage {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              font-size: 19px;
+              font-weight: bold;
+              background-image: linear-gradient(
+                to right,
+                #f58866 0%,
+                #f36fa3 51%,
+                #f36fa3 50%
+              );
+              color: #fff;
+              text-align: center;
+              line-height: 22px;
+              padding: 8px 0;
+            }
+            .selection {
+              text-align: center;
+              width: 40px;
+            }
+            .info {
+              display: flex;
+              justify-content: initial;
+              padding: 10px;
+              cursor: pointer;
+              width: 300px;
+              div {
+                margin-left: 10px;
+              }
+              span {
+                margin-left: 10px;
+                color: $descriptiveLight;
+                font-size: 13px;
+              }
+            }
+            .company {
+              padding: 0 20px;
+              width: 250px;
+            }
+            .details-row {
+              display: none;
+              background-color: #f1f1f1;
+              .edit-btn {
+                cursor: pointer;
+                color: gray;
+              }
+              .delete-btn {
+                cursor: pointer;
+                float: right;
+                color: red;
+              }
+            }
+          }
+        }
+      }
+      .details {
+        background-color: $fontLightColor;
+        color: $blackColor;
+        width: 600px;
+        height: 550px;
+        margin-left: 50px;
+        padding: 25px;
+        text-align: -webkit-center;
+        overflow: auto;
+        .font-light {
+          color: $descriptiveLight;
+        }
+        .edit-btn {
+          cursor: pointer;
+          float: right;
+          margin: 10px;
+          color: gray;
+        }
+        .delete-btn {
+          cursor: pointer;
+          float: right;
+          margin: 10px;
+          color: red;
+        }
+        #profileImage {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          font-size: 34px;
+          font-weight: bold;
+          background-image: linear-gradient(
+            to right,
+            #f58866 0%,
+            #f36fa3 51%,
+            #f36fa3 50%
+          );
+          color: #fff;
+          text-align: center;
+          line-height: 60px;
+          padding: 8px;
+        }
+        .brief-deails {
+          .heading-three {
+            font-family: poppins;
+            font-size: 18px;
+            margin-top: 15px;
+            font-weight: 600;
+          }
+          span {
+            color: $descriptivedarkColor;
+          }
+        }
+        .full-deails {
+          table {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            td {
+              width: 200px;
+              padding: 10px 5px;
+              text-align: left;
+              display: inline-table;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.not-found {
+  font-size: 20px;
+  text-align: center;
+  color: #f36fa3;
+  padding-top: 50px;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: $whiteColor;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $descriptivedarkColor;
+  cursor: pointer;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $descriptiveLight;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    height: 785px;
+  }
+  .page {
+    width: 950px;
+    hr {
+      margin-top: 35px;
+    }
+    .content {
+      margin: 25px;
+      .contacts {
+        margin: 25px 0;
+        .list {
+          width: 700px;
+          height: 585px;
+          overflow: auto;
+          input[type="checkbox"] {
+            width: 12px;
+            height: 12px;
+          }
+          table {
+            thead {
+              height: 30px;
+              font-size: 16px;
+              position: sticky;
+              top: 0;
+              z-index: 1;
+              .selection {
+                text-align: center;
+                width: 40px;
+              }
+              .info {
+                padding: 0 20px;
+                width: 200px;
+              }
+              .company {
+                padding: 0 20px;
+                width: 200px;
+              }
+              .sticky {
+                position: fixed;
+                top: 0;
+              }
+            }
+            tbody {
+              background-color: $whiteColor;
+
+              .round-image {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+              .selection {
+                text-align: center;
+                width: 40px;
+              }
+              .info {
+                padding: 10px;
+                width: 200px;
+                div {
+                  margin-left: 5px;
+                  margin-top: 0;
+                }
+              }
+              .company {
+                width: 200px;
+              }
+              .details-row {
+                display: none;
+              }
+            }
+          }
+        }
+        .details {
+          margin-left: 20px;
+          padding: 10px;
+          .brief-deails {
+            .heading-three {
+              font-family: poppins;
+              font-size: 15px;
+              margin-top: 10px;
+            }
+          }
+          .full-deails {
+            table {
+              margin-top: 10px;
+              td {
+                width: 175px;
+                padding-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    height: 780px;
+  }
+  .page {
+    width: 700px;
+    hr {
+      margin-top: 35px;
+    }
+    .content {
+      margin: 15px;
+      .contacts {
+        margin: 15px 0;
+        .list {
+          width: 750px;
+          height: 600px;
+          table {
+            thead {
+              .selection {
+                padding: 0 5px;
+                width: 50px;
+              }
+              .info {
+                padding: 0 5px;
+                width: 175px;
+                .more-details {
+                  display: none;
+                }
+              }
+              .company {
+                padding: 0 5px;
+                width: 175px;
+              }
+              .collapse {
+                display: none;
+              }
+            }
+            tbody {
+              background-color: $whiteColor;
+              .round-image {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+              .selection {
+                width: 50px;
+              }
+              .info {
+                padding: 5px;
+                width: 175px;
+              }
+              .company {
+                width: 175px;
+              }
+              .collapse {
+                display: none;
+              }
+            }
+          }
+        }
+        .details {
+          margin-left: 10px;
+          padding: 10px;
+
+          .full-deails {
+            table {
+              margin-top: 5px;
+              td {
+                width: 200px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .sidebar {
+    display: none;
+    height: 760px;
+  }
+  .page {
+    margin: 10px;
+    width: 350px;
+    hr {
+      display: none;
+    }
+    .content {
+      width: 385px;
+      .search-bar {
+        button {
+          float: right;
+          margin: 20px 0;
+          padding: 10px 25px;
+        }
+      }
+      margin: 10px;
+      .contacts {
+        display: block;
+        margin: 15px;
+
+        .list {
+          width: 380px;
+          height: 500px;
+          input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+          }
+
+          table {
+            thead {
+              .selection {
+                width: 40px;
+              }
+              .info {
+                width: 310px;
+              }
+              .company {
+                display: none;
+              }
+            }
+            tbody {
+              background-color: $whiteColor;
+              .round-image {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+              .selection {
+                width: 40px;
+              }
+              .info {
+                padding: 15px;
+                width: 310px;
+                display: flex;
+                justify-content: space-between;
+                #profileImage {
+                  display: none;
+                }
+              }
+              .company {
+                display: none;
+              }
+              .collapse {
+                float: right;
+                display: block;
+              }
+              .details-row {
+                display: none;
+              }
+
+              .details-row.active {
+                display: table-row;
+              }
+
+              .more-details {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-top: 1px solid #ddd;
+              }
+
+              .logo-icon {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+        .details {
+          display: none;
+        }
+      }
+    }
+  }
+}

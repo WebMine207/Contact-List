@@ -1,0 +1,25 @@
+$whiteColor: #ffffff;
+$blackColor: #000000;
+$primaryColor: #f58866;
+$secondaryColor: #f36fa3;
+$tertiaryColor: #f36fa3;
+$lightblueColor: #CDD6F9;
+$braveYellowColor: #FCE2B3;
+$titleDarkColor: #020D37;
+$descriptivedarkColor: #4C526A;
+$grayColor: #4F5261;
+$titleLightColor : #9D9EA3;
+$descriptiveLight : #ACAFB8;
+$fontLightColor : #EEEEEE;
+$bgGrayColor : #f1f1f1;
+$inputBgGrayColor :#eeeced;
+$highlightGrayColor : #e8ebee;
+
+@font-face {
+    font-family: 'Poppins'; 
+    src: url('/public/font/poppins.regular.ttf'); 
+}
+@font-face {
+    font-family: 'Inter'; 
+    src: url('/public/font/Inter-Regular.otf'); 
+}

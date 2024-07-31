@@ -1,0 +1,23 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  },
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "localStorage": true,
+    "fetch": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  }
+}
