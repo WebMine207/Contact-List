@@ -15,7 +15,7 @@ const {
 export default function Content(updatecontactlist, showModal) {
   const [modalShow, setModalShow] = useState(false);
   const [filteredContacts, setFilteredContacts] = useState(getContacts());
-  const [selectedContact, setSelectedContact] = useState('');
+  const [selectedContact, setSelectedContact] = useState(['']);
   const [editContact, setEditContact] = useState([]);
   const [modalType, setModalType] = useState([]);
 
@@ -41,11 +41,13 @@ export default function Content(updatecontactlist, showModal) {
       setSelectedContact(id);
     }
     function handleDeleteSelected(ids) {
-      const updatedContacts = filteredContacts().filter(
+      let contacts = filteredContacts;
+      const updatedContacts = contacts.filter(
         (contact) => !ids.includes(contact.id)
       );
-      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
       updateContactList();
+      handleShowDetails();
+      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
     }
     function deleteContact(id) {
       const confirmation = window.confirm("Are you sure you want to delete this contact ?");
