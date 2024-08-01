@@ -12231,6 +12231,10 @@ textarea.form-control-lg {
   background: #ACAFB8;
 }
 
+.error {
+  color: red;
+}
+
 @media screen and (max-width: 1024px) {
   .sidebar {
     height: 785px;

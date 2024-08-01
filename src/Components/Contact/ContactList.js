@@ -40,7 +40,11 @@ export default function ContactList({
           <thead>
             <tr>
               <td className="selection">
-                <input type="checkbox" onChange={handleSelectAll} checked={selectedIds.length === filteredContacts.length} />
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedIds.length === filteredContacts.length}
+                />
               </td>
               <td className="info">Basic Info</td>
               <td className="company">Company</td>
@@ -50,13 +54,7 @@ export default function ContactList({
             {filteredContacts != null && filteredContacts.length != 0 ? (
               filteredContacts.map((item) => {
                 return (
-                  <Contactdata
-                    data={item}
-                    showDetails={showDetails}
-                    key={item.id}
-                    isSelected={selectedIds.includes(item.id)}
-                    onSelect={handleSelect}
-                  />
+                  <Contactdata data={item} showDetails={showDetails} key={item.id} isSelected={selectedIds.includes(item.id)} onSelect={handleSelect} />
                 );
               })
             ) : (

@@ -272,7 +272,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: $descriptiveLight;
 }
-
+.error {
+   color: red;
+}
 @media screen and (max-width: 1024px) {
   .sidebar {
     height: 785px;

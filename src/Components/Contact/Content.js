@@ -5,17 +5,15 @@ import ContactModal from "./ContactModal";
 
 const {
   getContacts,
-  filterTable,
   clearContactsCache,
-  getContactById,
-  removeContact,
+  getNextContactId,
 } = require("../../helperFunctions/dataManipulation/contactsUtill");
-
 
 export default function Content(updatecontactlist, showModal) {
   const [modalShow, setModalShow] = useState(false);
-  const [filteredContacts, setFilteredContacts] = useState(getContacts());
-  const [selectedContact, setSelectedContact] = useState(['']);
+  const [allContacts, setAllContacts] = useState(getContacts());
+  const [filteredContacts, setFilteredContacts] = useState(allContacts);
+  const [selectedContact, setSelectedContact] = useState("");
   const [editContact, setEditContact] = useState([]);
   const [modalType, setModalType] = useState([]);
 
@@ -23,55 +21,131 @@ export default function Content(updatecontactlist, showModal) {
     () => getContactById(selectedContact),
     [selectedContact]
   );
-    function handleEdit(id) {
-      setModalType('edit');
-      setEditContact(getContactById(id));
-      setModalShow(true);    
+
+  // Begining:: Common Functions.
+  // Get selected contact details by ID
+  function getContactById(id) {
+    var contact = null;
+    if (allContacts != null) {
+      contact = allContacts.find((contact) => contact.id === id);
     }
-    function handleSearch(text) {
-      var filteredData =  filterTable(text.toLowerCase());
-      setFilteredContacts(filteredData);
+    return contact;
+  }
+  // Filtered the contacts as per search
+  function filterTable(text) {
+    if (text != "") {
+      const filter = text.toLowerCase();
+      let filteredData = null;
+      let filteredContacts = allContacts;
+      if (filteredContacts != null) {
+        filteredData = filteredContacts.filter((contact) => {
+          return (
+            contact.name.toLowerCase().includes(filter) ||
+            contact.company.toLowerCase().includes(filter) ||
+            contact.email.toLowerCase().includes(filter)
+          );
+        });
+      }
+      return filteredData;
+    } else {
+      return allContacts;
     }
-    function updateContactList() {
-      clearContactsCache();
-      setFilteredContacts(filteredContacts);
-      handleShowDetails(selectedContact);
-    }
-    function handleShowDetails(id) {
-      setSelectedContact(id);
-    }
-    function handleDeleteSelected(ids) {
-      let contacts = filteredContacts;
-      const updatedContacts = contacts.filter(
-        (contact) => !ids.includes(contact.id)
+  }
+  // Create contact & add to local storage
+  function addContact(contactData) {
+    let id = getNextContactId();
+    let newContact = {
+      id: id,
+      name: contactData.name,
+      email: contactData.email,
+      company: contactData.company,
+      designation: contactData.designation,
+      phone: contactData.phone,
+      address: contactData.address,
+    };
+    allContacts.push(newContact);
+    localStorage.setItem("contacts", JSON.stringify(allContacts));
+  }
+  function handleEdit(id) {
+    setModalType("edit");
+    setEditContact(getContactById(id));
+    setModalShow(true);
+  }
+  function handleSearch(text) {
+    var filteredData = filterTable(text.toLowerCase());
+    setFilteredContacts(filteredData);
+  }
+  function updateContactList() {
+    clearContactsCache();
+    setAllContacts(allContacts);
+    handleShowDetails(selectedContact);
+  }
+  function handleShowDetails(id) {
+    setSelectedContact(id);
+  }
+  function handleDeleteSelected(ids) {
+    const updatedContacts = allContacts.filter(
+      (contact) => !ids.includes(contact.id)
+    );
+    setFilteredContacts(updatedContacts);
+    handleShowDetails();
+    localStorage.setItem("contacts", JSON.stringify(updatedContacts));
+  }
+  function deleteContact(id) {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this contact ?"
+    );
+    if (confirmation) {
+      var index = allContacts.findIndex(
+        (contact) => contact.id === parseInt(id)
       );
+      if (index !== -1) {
+        allContacts.splice(index, 1);
+        localStorage.setItem("contacts", JSON.stringify(allContacts));
+      }
       updateContactList();
       handleShowDetails();
-      localStorage.setItem("contacts", JSON.stringify(updatedContacts));
     }
-    function deleteContact(id) {
-      const confirmation = window.confirm("Are you sure you want to delete this contact ?");
-      if (confirmation) {
-        removeContact(id);
-        updateContactList();
-        handleShowDetails();
-      }
+  }
+  // Edit contact & update changes on local storage
+  function updateContact(contactData, id) {
+    var index = allContacts.findIndex((contact) => contact.id === parseInt(id));
+    if (index !== -1) {
+      allContacts[index].name = contactData.name;
+      allContacts[index].email = contactData.email;
+      allContacts[index].phone = contactData.phone;
+      allContacts[index].company = contactData.company;
+      allContacts[index].designation = contactData.designation;
+      allContacts[index].address = contactData.address;
+      localStorage.setItem("contacts", JSON.stringify(allContacts));
+    } else {
+      window.alert("Contact not updated. Something went wrong.");
     }
+  }
+  // END:: Common Functions.
+
+  
   return (
     <>
       <div className="content" id="content">
-      <ContactModal
-        size="xl"
-        type={modalType}
-        show={modalShow}
-        data={editContact}
-        updateContactList={updatecontactlist}
-        onHide={() => setModalShow(false)}
-      />
+        <ContactModal
+          size="xl"
+          type={modalType}
+          show={modalShow}
+          data={editContact}
+          addContact={addContact}
+          updateContact={updateContact}
+          updateContactList={updatecontactlist}
+          onHide={() => setModalShow(false)}
+        />
         <div className="search-bar">
           <Search
             modalShow={showModal}
-            showModal={() =>{ setEditContact(null); setModalType('add'); setModalShow(true)}}
+            showModal={() => {
+              setEditContact(null);
+              setModalType("add");
+              setModalShow(true);
+            }}
             handleSearch={handleSearch}
             updatecontactlist={updateContactList}
           />
